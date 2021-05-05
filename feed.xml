@@ -3,12 +3,41 @@
     <title>Toby Statham</title>
     <link href="https://wutek.co.uk/feed.xml" rel="self" />
     <link href="https://wutek.co.uk" />
-    <updated>2021-05-04T10:38:00+01:00</updated>
+    <updated>2021-05-05T11:53:18+01:00</updated>
     <author>
         <name>Toby Statham</name>
     </author>
     <id>https://wutek.co.uk</id>
 
+    <entry>
+        <title>About Me</title>
+        <author>
+            <name>Toby Statham</name>
+        </author>
+        <link href="https://wutek.co.uk/about-me/"/>
+        <id>https://wutek.co.uk/about-me/</id>
+
+        <updated>2021-05-05T11:53:18+01:00</updated>
+            <summary>
+                <![CDATA[
+                    My name is Toby Statham and I live in Brighton An experienced Microsoft 365 / SharePoint / Power Platform / Azure Specialist, with a proven&hellip;
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <figure class="post__image"><img loading="lazy"  src="https://wutek.co.uk/media/posts/41//logo.jpg" sizes="(max-width: 768px) 100vw, 768px" srcset="https://wutek.co.uk/media/posts/41//responsive/logo-xs.jpg 300w ,https://wutek.co.uk/media/posts/41//responsive/logo-sm.jpg 480w ,https://wutek.co.uk/media/posts/41//responsive/logo-md.jpg 768w"  alt="Toby &amp; ET" width="400" height="400"></figure>
+<p>My name is Toby Statham and I live in Brighton</p>
+<p>An experienced <strong>Microsoft 365 / SharePoint / Power Platform / Azure Specialist</strong>, with a proven track record of directing corporate collaboration and process improvement projects – typically supporting design and development of solutions to realise business objectives.</p>
+<p>Key strengths include:</p>
+<ul>
+<li>Engaging with global business teams to gather requirements and understand processes; working with stakeholders across organisations to help understand and implement information management and governance best practices;</li>
+<li>Leading all stages of solution development, including requirements definition, design, development, architecture, testing and support;</li>
+<li>Migrating companies to the latest version of SharePoint and transitioning platforms into cloud with Microsoft 365 and Azure;</li>
+<li>Actively involved in the Microsoft 365, Power Platform, Azure and SharePoint communities, regularly attending conferences and user groups to expand knowledge.</li>
+</ul>
+            ]]>
+        </content>
+    </entry>
     <entry>
         <title>Enable Audience targeting using script or code</title>
         <author>
@@ -738,54 +767,6 @@ $files = $spsite.RecycleBin | ?{$_.Title -match "myfile\d{2}"}</p>
 <p style="padding-left:30px;">Write-Host "Found $($file.Title)"<br />
 $spsite.RecycleBin.Restore($file.ID)</p>
 <p>}</p>
-
-            ]]>
-        </content>
-    </entry>
-    <entry>
-        <title>&quot;Hack attack&quot; jQuery in a list view</title>
-        <author>
-            <name>Toby Statham</name>
-        </author>
-        <link href="https://wutek.co.uk/hack-attack-jquery-in-a-list-view/"/>
-        <id>https://wutek.co.uk/hack-attack-jquery-in-a-list-view/</id>
-            <category term="jquery"/>
-            <category term="SharePoint"/>
-
-        <updated>2021-05-04T08:35:19+01:00</updated>
-            <summary>
-                <![CDATA[
-                    Useful jQuery snippet to add a "View Properties" icon, so the user doesn't have to use context menu or ribbon (apparently they prefer this) $(".ms-listviewtable&hellip;
-                ]]>
-            </summary>
-        <content type="html">
-            <![CDATA[
-                <p>Useful jQuery snippet to add a "View Properties" icon, so the user doesn't have to use context menu or ribbon (apparently they prefer this)</p>
-<p><code><br />
-$(".ms-listviewtable &gt; tbody &gt; tr:first").append("&lt;TH class='ms-vh2 ms-vh2-icon' noWrap&gt;View&lt;/TH&gt;");</p>
-<p>$(".ms-listviewtable &gt; tbody &gt; tr").each(function() {</p>
-<p>if ($('td:first', $(this)).hasClass("ms-vb-title"))<br />
-    {<br />
-     var id = $("td.ms-vb-title &gt; div.ms-vb", $(this)).attr("id");<br />
-     var viewLink = $("&lt;td class='ms-vb-icon'&gt;&lt;IMG style='CURSOR:hand; BORDER-RIGHT-WIDTH: 0px; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px' title='View Properties' alt=Search src='/_layouts/images/gosearch15.png' /&gt;&lt;/td&gt;");<br />
-     $(this).append(viewLink);</p>
-<p>viewLink.click(function(event){</p>
-<p>var options = {<br />
-       url: "/MyLibrary/Forms/DispForm.aspx?ID=" + id,<br />
-       title: "Document Properties",<br />
-       allowMaximize: true,<br />
-       showClose: true,<br />
-       dialogReturnValueCallback: function(dialogResult, returnValue) { }<br />
-      };</p>
-<p>SP.UI.ModalDialog.showModalDialog(options);<br />
-     });<br />
-    }<br />
-  });<br />
-</code></p>
-<p>This just adds an extra column to the end with an icon that opens the 'View Properties' dialog.</p>
-<p>You can either use a Content Editor web part to make it view specific or add it to a global script for all views.<br />
-It's a little hacky, but does the job.</p>
-<p>It relies on the title column being available to extract the id of the item.</p>
 
             ]]>
         </content>
