@@ -3,12 +3,59 @@
     <title>Toby Statham</title>
     <link href="https://wutek.co.uk/feed.xml" rel="self" />
     <link href="https://wutek.co.uk" />
-    <updated>2021-05-06T08:51:40+01:00</updated>
+    <updated>2022-07-20T21:58:37+01:00</updated>
     <author>
         <name>Toby Statham</name>
     </author>
     <id>https://wutek.co.uk</id>
 
+    <entry>
+        <title>&#x27;Resource not found for the segment&#x27; on &#x27;Add a new row&#x27; action in Dataverse</title>
+        <author>
+            <name>Toby Statham</name>
+        </author>
+        <link href="https://wutek.co.uk/resource-not-found-for-the-segment-on-add-a-new-row-action-in-dataverse/"/>
+        <id>https://wutek.co.uk/resource-not-found-for-the-segment-on-add-a-new-row-action-in-dataverse/</id>
+            <category term="Power Platform"/>
+            <category term="Power Automate"/>
+            <category term="Low Code"/>
+            <category term="Dataverse"/>
+
+        <updated>2021-05-11T11:45:44+01:00</updated>
+            <summary>
+                <![CDATA[
+                    The problemWhen you use the Dataverse "Add a new row" action in Power Automate and the table you are adding a row to has a Lookup column, you get the following error when trying to run the flow. { "error": { "code": "0x0", "message": "Resource not found for the segment '92f9655e-78b1-eb11-8236-000d3a8701b5'." } } At first sight, I though you&hellip;
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <h2>The problem</h2>
+<p>When you use the Dataverse "Add a new row" action in Power Automate and the table you are adding a row to has a Lookup column, you get the following error when trying to run the flow.</p>
+<pre><code class="language-javascript">{</code><br><code class="language-javascript">  "error": {</code><br><code class="language-javascript">    "code": "0x0",</code><br><code class="language-javascript">    "message": "Resource not found for the segment '92f9655e-78b1-eb11-8236-000d3a8701b5'."</code><br><code class="language-javascript">  }</code><br><code class="language-javascript">}<br></code></pre>
+<div>At first sight, I though you just need to add the ID of the related record.</div>
+<div> </div>
+<div>It's not obvious what syntax you need to use here. Looking at the action parameters and documentation its suggests that you need to use the plural form of the table</div>
+<div> </div>
+<div>
+<figure class="post__image"><img loading="lazy"  src="https://wutek.co.uk/media/posts/43/action.png" sizes="(max-width: 1200px) 100vw, 1200px" srcset="https://wutek.co.uk/media/posts/43/responsive/action-xs.png 300w ,https://wutek.co.uk/media/posts/43/responsive/action-sm.png 480w ,https://wutek.co.uk/media/posts/43/responsive/action-md.png 768w ,https://wutek.co.uk/media/posts/43/responsive/action-xl.png 1200w"  alt="" width="623" height="284"></figure>
+<p>I had seen various solutions on blogs and in the Power Users forum that suggested different options</p>
+<pre><code class="language-bash">Requests(080ce27b-6f41-4201-a5f3-c26dc23f81d4)</code><br><code class="language-bash">/Requests(080ce27b-6f41-4201-a5f3-c26dc23f81d4)</code><br><code class="language-bash">requests(080ce27b-6f41-4201-a5f3-c26dc23f81d4)</code><br><code class="language-bash">sol_request(Requests(080ce27b-6f41-4201-a5f3-c26dc23f81d4))</code></pre>
+<p>None worked</p>
+<h2>The Solution</h2>
+<p>Turns out you need to use a plural version of the <strong>table name</strong></p>
+<figure class="post__image"><img loading="lazy"  src="https://wutek.co.uk/media/posts/43/table.png" sizes="(max-width: 1200px) 100vw, 1200px" srcset="https://wutek.co.uk/media/posts/43/responsive/table-xs.png 300w ,https://wutek.co.uk/media/posts/43/responsive/table-sm.png 480w ,https://wutek.co.uk/media/posts/43/responsive/table-md.png 768w ,https://wutek.co.uk/media/posts/43/responsive/table-xl.png 1200w"  alt="" width="913" height="83"></figure>
+<p> Some people may have come across this by chance, dependent on the naming conventions used and whether the table was being used in a solution</p>
+<p>Below is the correct format to use (The guid is the ID for the related record)</p>
+<p><br><code class="language-bash">aa_dma_request<span style="color: #e03e2d;">s</span>(<code class="language-bash">080ce27b-6f41-4201-a5f3-c26dc23f81d4</code>)</code></p>
+<p> Don't use the plural display name in the table settings</p>
+<figure class="post__image"><img loading="lazy"  src="https://wutek.co.uk/media/posts/43/edittable.png" sizes="(max-width: 1200px) 100vw, 1200px" srcset="https://wutek.co.uk/media/posts/43/responsive/edittable-xs.png 300w ,https://wutek.co.uk/media/posts/43/responsive/edittable-sm.png 480w ,https://wutek.co.uk/media/posts/43/responsive/edittable-md.png 768w ,https://wutek.co.uk/media/posts/43/responsive/edittable-xl.png 1200w"  alt="" width="318" height="266"></figure>
+<p>I'd be interested to see if the plural suffixes works for table names as they do for display names (i.e. -s and -es)</p>
+<p>This may have been something that's obvious to someone who's come from a Dynamics background, but certainly wasn't to me.</p>
+</div>
+<div> </div>
+            ]]>
+        </content>
+    </entry>
     <entry>
         <title>Terms &amp; Conditions</title>
         <author>
@@ -20,7 +67,7 @@
         <updated>2021-05-06T08:51:40+01:00</updated>
             <summary>
                 <![CDATA[
-                    Terms and ConditionsLast updated: May 06, 2021 Please read these terms and conditions carefully before using Our Service. The words of which the initial letter&hellip;
+                    Terms and ConditionsLast updated: May 06, 2021 Please read these terms and conditions carefully before using Our Service. The words of which the initial letter is capitalised have meanings defined under the following conditions. The following definitions shall have the same meaning regardless of whether they appear in singular or&hellip;
                 ]]>
             </summary>
         <content type="html">
@@ -117,15 +164,15 @@
         <link href="https://wutek.co.uk/about-me/"/>
         <id>https://wutek.co.uk/about-me/</id>
 
-        <updated>2021-05-05T11:53:18+01:00</updated>
+        <updated>2022-07-20T21:58:37+01:00</updated>
             <summary>
                 <![CDATA[
-                    My name is Toby Statham and I live in Brighton An experienced Microsoft 365 / SharePoint / Power Platform / Azure Specialist, with a proven&hellip;
+                    My name is Toby Statham and I live in Brighton An experienced Microsoft 365 / SharePoint / Power Platform / Azure Specialist, with a proven track record of directing corporate collaboration and process improvement projects – typically supporting design and development of solutions to realise business objectives. Key strengths include:&hellip;
                 ]]>
             </summary>
         <content type="html">
             <![CDATA[
-                <figure class="post__image"><img loading="lazy"  src="https://wutek.co.uk/media/posts/41//logo.jpg" sizes="(max-width: 768px) 100vw, 768px" srcset="https://wutek.co.uk/media/posts/41//responsive/logo-xs.jpg 300w ,https://wutek.co.uk/media/posts/41//responsive/logo-sm.jpg 480w ,https://wutek.co.uk/media/posts/41//responsive/logo-md.jpg 768w"  alt="Toby &amp; ET" width="400" height="400"></figure>
+                <figure class="post__image"><img loading="lazy"  src="https://wutek.co.uk/media/posts/41//logo.jpg" sizes="(max-width: 1200px) 100vw, 1200px" srcset="https://wutek.co.uk/media/posts/41//responsive/logo-xs.jpg 300w ,https://wutek.co.uk/media/posts/41//responsive/logo-sm.jpg 480w ,https://wutek.co.uk/media/posts/41//responsive/logo-md.jpg 768w ,https://wutek.co.uk/media/posts/41//responsive/logo-xl.jpg 1200w"  alt="Toby &amp; ET" width="400" height="400"></figure>
 <p>My name is Toby Statham and I live in Brighton</p>
 <p>An experienced <strong>Microsoft 365 / SharePoint / Power Platform / Azure Specialist</strong>, with a proven track record of directing corporate collaboration and process improvement projects – typically supporting design and development of solutions to realise business objectives.</p>
 <p>Key strengths include:</p>
@@ -135,6 +182,10 @@
 <li>Migrating companies to the latest version of SharePoint and transitioning platforms into cloud with Microsoft 365 and Azure;</li>
 <li>Actively involved in the Microsoft 365, Power Platform, Azure and SharePoint communities, regularly attending conferences and user groups to expand knowledge.</li>
 </ul>
+<h3>Contact Details</h3>
+<p>✉️ <a href="mailto:toby@wutek.co.uk">toby@wutek.co.uk</a></p>
+<p>📞 07879 648059</p>
+<p> </p>
             ]]>
         </content>
     </entry>
@@ -148,21 +199,20 @@
             <category term="sharepoint-online"/>
             <category term="powershell"/>
             <category term="pnp"/>
-            <category term="development"/>
             <category term="code"/>
             <category term="c-sharp"/>
 
         <updated>2021-05-04T09:08:44+01:00</updated>
             <summary>
                 <![CDATA[
-                    Currently there are no direct methods to enable Audience Targeting on a List or Library via script or code. This is currently done through the&hellip;
+                    Currently there are no direct methods to enable Audience Targeting on a List or Library via script or code. This is currently done through the List or Library Settings screen under Audience targetting settings option When you enable audience targeting through these settings, a field is created in the corresponding&hellip;
                 ]]>
             </summary>
         <content type="html">
             <![CDATA[
                 <p>Currently there are no direct methods to enable <strong>Audience Targeting</strong> on a <strong>List</strong> or <strong>Library</strong> via script or code.</p>
 <p>This is currently done through the List or Library Settings screen under <strong>Audience targetting</strong> settings option</p>
-<p><figure class="post__image"><img loading="lazy" src="https://wutek.co.uk/media/posts/38/settings.jpg" sizes="(max-width: 768px) 100vw, 768px" srcset="https://wutek.co.uk/media/posts/38/responsive/settings-xs.jpg 300w ,https://wutek.co.uk/media/posts/38/responsive/settings-sm.jpg 480w ,https://wutek.co.uk/media/posts/38/responsive/settings-md.jpg 768w"  alt="Image description" width="990" height="200" /></figure></p>
+<p><figure class="post__image"><img loading="lazy" src="https://wutek.co.uk/media/posts/38/settings.jpg" sizes="(max-width: 1200px) 100vw, 1200px" srcset="https://wutek.co.uk/media/posts/38/responsive/settings-xs.jpg 300w ,https://wutek.co.uk/media/posts/38/responsive/settings-sm.jpg 480w ,https://wutek.co.uk/media/posts/38/responsive/settings-md.jpg 768w ,https://wutek.co.uk/media/posts/38/responsive/settings-xl.jpg 1200w"  alt="Image description" width="990" height="200" /></figure></p>
 <p>When you enable audience targeting through these settings, a field is created in the corresponding <strong>List</strong> or <strong>Library</strong> called <strong>Target Audiences</strong></p>
 <p>Using the <code>Get-PnpField</code> PnP PowerShell command to get the <code>SchemaXml</code> property we can see how the field is constructed.</p>
 <pre><code class="language-ps">(Get-PnPField -Identity &quot;Target Audiences&quot; -List Documents).SchemaXml</code></pre>
@@ -256,13 +306,12 @@ using (var context = manager.GetAppOnlyAuthenticatedContext(siteUrl, appId, appS
             <category term="spfx"/>
             <category term="sharepoint-online"/>
             <category term="extensions"/>
-            <category term="development"/>
             <category term="code"/>
 
         <updated>2021-05-04T09:30:26+01:00</updated>
             <summary>
                 <![CDATA[
-                    This post is about creating a ListView CommandSet extension which uses the the onInit method to make “service” calls. If you want to dive straight&hellip;
+                    This post is about creating a ListView CommandSet extension which uses the the onInit method to make “service” calls. If you want to dive straight in, the source code for this post is available from my-command-set GitHub repository. Full details can be found on creating an Extension solution can be&hellip;
                 ]]>
             </summary>
         <content type="html">
@@ -426,7 +475,7 @@ if (compareSecureCommand) {
         <updated>2021-05-04T08:35:19+01:00</updated>
             <summary>
                 <![CDATA[
-                    When loading this page in Central Administration, I was being presented with a Excel Services error and a correlation ID. Looking at the ULS logs&hellip;
+                    When loading this page in Central Administration, I was being presented with a Excel Services error and a correlation ID. Looking at the ULS logs I noticed the following error. Insufficient SQL database permissions for user 'Name: &lt;DOMAIN\USERNAME&gt; SID: &lt;SID-CODE&gt; ImpersonationLevel: None' in database '&lt;DATABASE-NAME&gt;' on SQL Server instance '&lt;SQL-INSTANCE&gt;'. Additional&hellip;
                 ]]>
             </summary>
         <content type="html">
@@ -459,7 +508,7 @@ $webApp.GrantAccessToProcessIdentity("DOMAIN\serviceapplicationuser")</p>
         <updated>2021-05-04T10:38:00+01:00</updated>
             <summary>
                 <![CDATA[
-                    This turned out to be harder than I thought. Metadata navigation and per-location views are an little known, but powerful way of making lists more&hellip;
+                    This turned out to be harder than I thought. Metadata navigation and per-location views are an little known, but powerful way of making lists more useful. It allows you to assign a default view and others views to a folder, content type or field. My need was to allow users&hellip;
                 ]]>
             </summary>
         <content type="html">
@@ -572,7 +621,7 @@ MetadataNavigationSettings.SetMetadataNavigationSettings(list, settings);<br>
         <updated>2021-05-04T08:35:19+01:00</updated>
             <summary>
                 <![CDATA[
-                    THIS IS VERY BAD. WE ALL KNOW THAT MAKING DIRECT UPDATES TO THE DATABASE WILL CREATE SOME SORT OF BLACK HOLE AND KITTENS DIE IN&hellip;
+                    THIS IS VERY BAD. WE ALL KNOW THAT MAKING DIRECT UPDATES TO THE DATABASE WILL CREATE SOME SORT OF BLACK HOLE AND KITTENS DIE IN REDMOND ETC, ETC. I HAVEN'T TESTED THE LONG TERM EFFECTS AND ONLY DID THIS ON MY DEVELOPMENT ENVIRONMENT TO GET ME OUT OF A PICKLE.
                 ]]>
             </summary>
         <content type="html">
@@ -604,7 +653,7 @@ WHERE CAST([Definition] AS XML).value('(/Field/@Version)[1]', 'int') &lt;&gt; [V
         <updated>2021-05-04T08:35:19+01:00</updated>
             <summary>
                 <![CDATA[
-                    I had a need to show the path of terms, starting from a specific term and then showing the path to the final children, This&hellip;
+                    I had a need to show the path of terms, starting from a specific term and then showing the path to the final children, This would involve traversing the structure as the depth is unknown, so I wrote this piece of code to accomplish this using the Client Components. Please&hellip;
                 ]]>
             </summary>
         <content type="html">
@@ -666,7 +715,7 @@ var rootTerm = <span style="color:#99ccff;">TaxonomySession</span>.GetTaxonomySe
         <updated>2021-05-04T08:35:19+01:00</updated>
             <summary>
                 <![CDATA[
-                    If you have a field called "Folder" it will not be available in the returned ListItem object e.g. listItem["Folder"].ToString() The inner workings of the ListItem&hellip;
+                    If you have a field called "Folder" it will not be available in the returned ListItem object e.g. listItem["Folder"].ToString() The inner workings of the ListItem object uses an ExpandoObject to store the properties. It seems it mixes this up in the FieldValues Collection with all your custom fields. The Folder&hellip;
                 ]]>
             </summary>
         <content type="html">
@@ -798,44 +847,6 @@ var rootTerm = <span style="color:#99ccff;">TaxonomySession</span>.GetTaxonomySe
         return flag;
     }</pre>
 <p>Here's a <a href="http://social.technet.microsoft.com/Forums/en-US/sharepointdevelopment/thread/275af5b9-eafa-4210-b7de-7e8a9f0cf88f">link in TechNet Forums to the initial discussion</a> and a <a href="http://social.msdn.microsoft.com/Forums/en-US/sharepointdevelopment/thread/076dcf40-ec57-42ed-9232-1224a0fd5e26/">link to the reported bug</a></p>
-
-            ]]>
-        </content>
-    </entry>
-    <entry>
-        <title>The tale of two ampersands in a Taxonomy term</title>
-        <author>
-            <name>Toby Statham</name>
-        </author>
-        <link href="https://wutek.co.uk/the-tale-of-two-ampersands-in-a-taxonomy-term/"/>
-        <id>https://wutek.co.uk/the-tale-of-two-ampersands-in-a-taxonomy-term/</id>
-            <category term="sharepoint 2013"/>
-            <category term="client components"/>
-
-        <updated>2021-05-04T08:35:19+01:00</updated>
-            <summary>
-                <![CDATA[
-                    There are two types of ampersands that you need to be aware of when playing with SharePoint Taxonomy Our favorite and most loved And the impostor After&hellip;
-                ]]>
-            </summary>
-        <content type="html">
-            <![CDATA[
-                <p>There are two types of ampersands that you need to be aware of when playing with SharePoint Taxonomy</p>
-<p>Our favorite and most loved</p>
-<h1>&amp; ASCII Number: 38</h1>
-<p>And the impostor</p>
-<h1>＆ ASCII Number: 65286</h1>
-<p>After reading <a title="this article" href="http://nickhobbs.wordpress.com/2012/03/29/sharepoint-2010-managed-metadata-converts-ampersand-and-double-quotes-to-unicode/" target="_blank">this article</a> by <a title="Nick Hobbs" href="http://nickhobbs.wordpress.com/" target="_blank">Nick Hobbs</a>, it became apparent that when you create a term it replaces the 38 ampersand with a 65286 ampersand.</p>
-<p>This then becomes a problem if you want to do a comparison with your original source (spreadsheet, database, etc) as they are no longer the same.</p>
-<p>As detailed in Nick's article, you can use the TaxonomyItem.NormalizeName method to create a "Taxonomy" version of your string for comparison.</p>
-<p>Below is the code I used in the SharePoint 2013 Client Component which is a little different from the server code.</p>
-<p><span style="color:#3366ff;">string</span> myString =<span style="color:#993300;"> "This contains &amp;"</span>;<br />
-<span style="color:#3366ff;">using</span> (var context = new ClientContext(<span style="color:#993300;">"http://myurl"</span>))<br />
-{<br />
-<span style="color:#3366ff;">var</span> result = <span style="color:#33cccc;">TaxonomyItem</span>.NormalizeName(context, myString);<br />
-context.ExecuteQuery();</p>
-<p><span style="color:#3366ff;">string</span> normalisedString = result.Value;<br />
-}</p>
 
             ]]>
         </content>
